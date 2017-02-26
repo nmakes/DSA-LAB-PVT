@@ -20,6 +20,7 @@ int main(int argc, char* argv[])
 		switch(input)
 		{
 			case -1:
+				return 0;
 				break;
 
 			case 0:
