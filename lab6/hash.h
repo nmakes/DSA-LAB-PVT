@@ -5,30 +5,17 @@
 #define MAX_SYMBOLARRAY_SIZE 100
 
 // SYMBOL - THE BASIC DATATYPE
-
 typedef struct _symbol
 {
 	char key[MAX_CHAR_BUFFER];
 	char value[MAX_CHAR_BUFFER];
 } symbol;
 
-// ==========
+
 // Symbolist - the dynamic array of symbols
-// ==========
+symbol* INIT_symbolist(symbol * list, long int * size, long int * max_size, long int M);
 
-symbol symbolist[100];
-int symbolist_size = 0;
-
-void pushSymbolArray(symbol s)
-{
-	symbolist[symbolist_size] = s;
-	symbolist_size++;
-}
-
-// ==========
 // Linked list of hash records
-// ==========
-
 typedef struct _symbol_node
 {
 	symbol * value;
@@ -59,19 +46,13 @@ typedef struct _hash_table
 	symbolList * tableArray;
 } hashTable;
 
-void INIT_hashTable(hashTable * PTR, int M)
-{
-	PTR->tableArray = (symbolList*) malloc(sizeof(symbolList) * M);
-	PTR->size = M;
-	PTR->freeSlots = PTR->size;
-	PTR->entries = PTR->loadFactor = PTR->insertionTime = PTR->queryingTime = 0;
-}
+hashTable * INIT_hashTable(hashTable * PTR, int M);
 
 // ==========
 // DRIVER FUNCTIONS
 // ==========
 
-void readSymbols(int N); // reads N symbols into symbolArray
-void readQueries();
-void createHashTable();
-void lookupQueries();
+void readSymbols(symbol * symbolist, int N); // reads N symbols into symbolArray
+void readQueries(symbol * querylist, int N);
+void createHashTable(hashTable * htable, long int size, long int minlaod, long int maxload, float resizeFactor); // uses INIT_hashTable
+void lookupQueries(hashTable * htable, symbol * querylist, long int querylist_size);
