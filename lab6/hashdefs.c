@@ -1,14 +1,14 @@
 #include "hash.h"
 
-symbol* INIT_symbolist(symbol * list, long int * size, long int * max_size, long int M)
+SymbolList * INIT_symbolist(SymbolList * slist, long int M)
 {
-	if(list!=NULL) free(list);
+	if(slist->list!=NULL) free(slist);
 
-	*max_size = M;
-	list = (symbol *) malloc(sizeof(symbol)*M);
-	*size = 0;
-
-	return list;
+	slist->max_size = M;
+	slist->size = 0;
+	slist->list = (symbol *) malloc(sizeof(symbol)*M);
+	
+	return slist;
 }
 
 hashTable * INIT_hashTable(hashTable * PTR, int M)
@@ -23,7 +23,15 @@ hashTable * INIT_hashTable(hashTable * PTR, int M)
 	return PTR;
 }
 
-void readSymbols(symbol * symbolist, int N){} // reads N symbols into symbolArray
-void readQueries(symbol * querylist, int N){}
-void createHashTable(hashTable * htable, long int size, long int minlaod, long int maxload, float resizeFactor){} // uses INIT_hashTable
-void lookupQueries(hashTable * htable, symbol * querylist, long int querylist_size){}
+void readSymbols(SymbolList * symbolist, int N) // reads N symbols into symbolArray
+{
+	int i=0;
+	for (i=0; i<N; i++)
+	{
+
+	}
+}
+
+void readQueries(SymbolList * querylist, int N) {}
+void createHashTable(hashTable * htable, long int size, long int minlaod, long int maxload, float resizeFactor) {} // uses INIT_hashTable
+void lookupQueries(hashTable * htable, SymbolList * querylist) {}

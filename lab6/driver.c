@@ -6,14 +6,9 @@ int main(int argc, char* argv[])
 {
 	long int input, size, minload, maxload, resizeFactor;
 	
-	symbol * symbolist = NULL;
-	long int symbolist_size = 0;
-	long int symbolist_maxSize = 0;
-
-	symbol * querylist = NULL;
-	long int querylist_size = 0;
-	long int querylist_maxSize = 0;
-
+	SymbolList * symbolist = NULL;
+	SymbolList * querylist = NULL;
+	
 	hashTable * htable = NULL;
 
 	INIT_hashTable(htable, 0);
@@ -29,13 +24,13 @@ int main(int argc, char* argv[])
 
 			case 0:
 				scanf("%ld", &size);
-				INIT_symbolist(symbolist, &symbolist_size, &symbolist_maxSize, size);
+				INIT_symbolist(symbolist, size);
 				readSymbols(symbolist, size);
 				break;
 
 			case 1:
 				scanf("%ld", &size);
-				INIT_symbolist(querylist, &querylist_size, &querylist_maxSize, size);
+				INIT_symbolist(querylist, size);
 				readQueries(querylist, size);
 				break;
 			
@@ -45,7 +40,7 @@ int main(int argc, char* argv[])
 				break;
 
 			case 3:
-				lookupQueries(htable, querylist, querylist_size);
+				lookupQueries(htable, querylist);
 				break;
 
 			default:
