@@ -15,7 +15,6 @@ typedef struct
 {
 	symbol * list;
 	long int size;
-	long int max_size;
 } SymbolList;
 
 // Symbolist - the dynamic array of symbols
@@ -58,7 +57,7 @@ hashTable * INIT_hashTable(hashTable * PTR, int M);
 // DRIVER FUNCTIONS
 // ==========
 
-void readSymbols(SymbolList * symbolist, int N); // reads N symbols into symbolArray
-void readQueries(SymbolList * querylist, int N);
-void createHashTable(hashTable * htable, long int size, long int minlaod, long int maxload, float resizeFactor); // uses INIT_hashTable
+SymbolList * readSymbols(SymbolList * symbolist, int N); // reads N symbols into symbolArray
+SymbolList * readQueries(SymbolList * querylist, int N);
+hashTable * createHashTable(hashTable * htable, SymbolList * symbolist, long int size, long int minlaod, long int maxload, float resizeFactor); // uses INIT_hashTable
 void lookupQueries(hashTable * htable, SymbolList * querylist);

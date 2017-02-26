@@ -1,2 +1,2 @@
 gcc -c driver.c hashdefs.c
-gcc driver.o hashdefs.o -o run
+gcc driver.o hashdefs.o -o run -g
