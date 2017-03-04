@@ -1,0 +1,3 @@
+gcc -c -g radix.c driver.c
+gcc -o run radix.o driver.o
+
