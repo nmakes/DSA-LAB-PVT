@@ -26,7 +26,7 @@ void clear(BloomFilter * BF);
 
 void experiment(BloomFilter * BF, int K, int L, int N);
 
-float FP (BloomFilter * BF)
+float FP (BloomFilter * BF, int d)
 {
-	float val = pow()
+	float val = pow( (1-pow(2.718, -1 * ( (float) d * BF->m / (BF->type==naive?32:BF->sizeInBytes/sizeof(unsigned int))  ) ), d)
 }

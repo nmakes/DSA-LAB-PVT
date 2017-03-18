@@ -46,7 +46,6 @@ BloomFilter * CreateBloomFilter(BloomFilter * BF, int x, int n)
 		BF->type = naive;
 		BF->filter = CreateNaiveBitVector(BF->filter);
 		BF->sizeInBytes = sizeof(unsigned int);
-		BF->m ++;
 	}
 	else if(x==2)
 	{
@@ -59,13 +58,24 @@ BloomFilter * CreateBloomFilter(BloomFilter * BF, int x, int n)
 
 void insert(BloomFilter* BF, int V, unsigned int N, int L)
 {
-	int i=1;
+	int i=1, insflag=1;
 
 	if(BF->type == integer)
 	{
 		for(i=1; i<=L; i++)
 		{
-			setInt(BF->filter, hash(V, N, i));
+			if(getInt(BF->filter), hash(V,N,i) != 1)
+			{
+				setInt(BF->filter, hash(V, N, i));
+			}
+			else
+			{
+				insflag = 0;
+			}
+		}
+		if(insflag==1)
+		{
+			BF->m++;
 		}
 	}
 	else if(BF->type == naive)
