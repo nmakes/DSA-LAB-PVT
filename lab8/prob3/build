@@ -1,0 +1,2 @@
+gcc -c -g naivebitvector.c intbitvector.c bloom.c driver.c
+gcc -o run naivebitvector.o intbitvector.o bloom.o driver.o

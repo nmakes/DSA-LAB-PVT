@@ -1,0 +1,2 @@
+sudo gcc -c bitvector.c driver.c
+sudo gcc -o run bitvector.o driver.o
