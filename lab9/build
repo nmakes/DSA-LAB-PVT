@@ -1,0 +1,2 @@
+gcc -g -c bst.c driver.c
+gcc -g -o run bst.o driver.o
