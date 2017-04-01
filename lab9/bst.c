@@ -165,7 +165,7 @@ void inOrderTravIter(BST * root)
 
 		if(root->right!=NULL)
 			stackPush(st, root->right);
-	}	
+	}
 }
 
 void findKthSmallest(BST * root, int k)
