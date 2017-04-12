@@ -49,6 +49,24 @@ int isEmpty(STACK * st)
 	return !(st->count); // BRANCH PREDICTION FAIL SAFE
 }
 
+STACK * printStack(STACK * st)
+{
+	if(st->top!=NULL)
+	{
+		stackNODE * mov = st->top;
+		printf("- STACK -");
+		while(mov != NULL)
+		{
+			printf("%d ", mov->root->val);
+			mov = mov->next;
+		}
+	}
+
+	printf("\n\n");
+
+	return st;
+}
+
 int * readData(int * array, int N)
 {
 	int stemp;
@@ -63,6 +81,35 @@ int * readData(int * array, int N)
 
 BST * add(BST * root, int val)
 {
+
+	BST * temp = (BST*)malloc(sizeof(BST));
+	temp->val = val;
+	temp->left = NULL;
+	temp->right = NULL;
+	temp->parent = NULL;
+
+	BST * current = root;
+	BST * parent = root->parent;
+
+	while(1)
+	{
+		if(val <= root->val)
+		{
+			if(root->left==NULL)
+			{
+				root->left = temp;
+				return root;
+			}
+			else
+			{
+				
+			}
+		}
+	}
+
+	/*
+	// recursive implementation
+
 	if(root == NULL)
 	{
 		BST * temp = (BST*)malloc(sizeof(BST));
@@ -118,7 +165,7 @@ BST * add(BST * root, int val)
 				return root;
 			}
 		}
-	}
+	}*/
 }
 
 BST * construct(BST * root, int * list, int size)
@@ -154,17 +201,25 @@ void inOrderTravIter(BST * root)
 	st->top=NULL;
 	st->count=0;
 
+	printStack(st);
+
 	while(!isEmpty(st))
 	{
 		root = stackGetTop(st);	stackPop(st);
 
 		while(root->left!=NULL)
+		{
 			stackPush(st, root=root->left);
+			printStack(st);
+		}
 
 		printf("%d ", root->val); // this is visiting the element
 
 		if(root->right!=NULL)
+		{
 			stackPush(st, root->right);
+			printStack(st);
+		}
 	}
 }
 
