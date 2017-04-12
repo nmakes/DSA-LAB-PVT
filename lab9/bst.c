@@ -81,28 +81,52 @@ int * readData(int * array, int N)
 
 BST * add(BST * root, int val)
 {
-
+	// iterative implementation
 	BST * temp = (BST*)malloc(sizeof(BST));
 	temp->val = val;
 	temp->left = NULL;
 	temp->right = NULL;
 	temp->parent = NULL;
 
-	BST * current = root;
-	BST * parent = root->parent;
-
-	while(1)
+	if(root==NULL)
 	{
-		if(val <= root->val)
+		root = temp;
+		return root;
+	}
+	else
+	{
+		BST * current = root;
+
+		while(1)
 		{
-			if(root->left==NULL)
+			printf("WHILERUNNING");
+			if(val <= current->val)
 			{
-				root->left = temp;
-				return root;
+				if(current->left==NULL)
+				{
+					current->left = temp;
+					temp->parent = current;
+					return root;
+				}
+				else
+				{
+					current = current->left;
+					continue;
+				}
 			}
 			else
 			{
-				
+				if(current->right==NULL)
+				{
+					current->right = temp;
+					temp->parent = current;
+					return root;
+				}
+				else
+				{
+					current = current->right;
+					continue;
+				}
 			}
 		}
 	}
