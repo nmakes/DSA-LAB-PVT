@@ -59,5 +59,10 @@ hashTable * INIT_hashTable(hashTable * PTR, int M);
 
 SymbolList * readSymbols(SymbolList * symbolist, int N); // reads N symbols into symbolArray
 SymbolList * readQueries(SymbolList * querylist, int N);
-hashTable * createHashTable(hashTable * htable, SymbolList * symbolist, long int size, long int minlaod, long int maxload, float resizeFactor); // uses INIT_hashTable
+hashTable * createHashTable(hashTable * htable, 
+							SymbolList * symbolist, 
+							long int size, 
+							long int minlaod, 
+							long int maxload, 
+							float resizeFactor); // uses INIT_hashTable
 void lookupQueries(hashTable * htable, SymbolList * querylist);

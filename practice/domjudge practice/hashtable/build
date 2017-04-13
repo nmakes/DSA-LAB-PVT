@@ -1,0 +1,2 @@
+gcc -c driver.c hash.c -g
+gcc -o run driver.o hash.o -g

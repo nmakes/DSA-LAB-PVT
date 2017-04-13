@@ -14,6 +14,15 @@ qs(ls,lo,hi)
 
 #include "data.h"
 
+void printList(int A[], int s, int e)
+{
+	int i = s;
+	for(i=s; i<=e; i++)
+	{
+		printf("%d\t", A[i]);
+	}
+}
+
 int pivot(int Ls[], int lo, int hi)
 {
 	return hi;
@@ -117,12 +126,18 @@ int quickSort(int Ls[], int lo, int hi)
 	}
 }
 
-void printList(int A[], int s, int e)
+int partialQuickSort(int Ls[], int lo , int hi, int L, int size)
 {
-	int i = s;
-	for(i=s; i<=e; i++)
+	if ( (lo<hi) && (hi-lo+1<L) )
 	{
-		printf("%d\t", A[i]);
+		int p = part(Ls,lo,hi,pivot(Ls,lo,hi));
+		partialQuickSort(Ls,lo,p-1,L);
+		partialQuickSort(Ls,p+1,hi,L);
+	}
+	else if(hi-lo+1<L)
+	{
+		printList(Ls, 0, size-1);
+		return 0;
 	}
 }
 

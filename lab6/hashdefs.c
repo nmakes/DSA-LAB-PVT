@@ -50,7 +50,11 @@ hashTable * createHashTable(hashTable * htable,  SymbolList * symbolist, long in
 {
 	htable = INIT_hashTable(htable, size);
 
-	
+	int i=0;
+	for(i=0; i<symbolist->size; i++)
+	{
+		
+	}
 
 	/*
 	PSEUDO CODES

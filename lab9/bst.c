@@ -99,7 +99,6 @@ BST * add(BST * root, int val)
 
 		while(1)
 		{
-			printf("WHILERUNNING");
 			if(val <= current->val)
 			{
 				if(current->left==NULL)
@@ -219,30 +218,43 @@ void inOrderTravRec(BST * root)
 	}
 }
 
+
+
+/*		8
+	6---|---10
+4---|	9---|
+|---5
+*/
 void inOrderTravIter(BST * root)
 {
 	STACK * st = (STACK*)malloc(sizeof(STACK));
 	st->top=NULL;
 	st->count=0;
 
-	printStack(st);
+	BST * current = root;
+	
+	int flag = 1;
 
-	while(!isEmpty(st))
+	while(flag)
 	{
-		root = stackGetTop(st);	stackPop(st);
-
-		while(root->left!=NULL)
+		if(current!=NULL)
 		{
-			stackPush(st, root=root->left);
-			printStack(st);
+			stackPush(st, current);
+			current=current->left;
 		}
-
-		printf("%d ", root->val); // this is visiting the element
-
-		if(root->right!=NULL)
+		else
 		{
-			stackPush(st, root->right);
-			printStack(st);
+			if(!isEmpty(st))
+			{
+				current = stackGetTop(st);	stackPop(st);
+				printf("%d ", current->val); // this is visiting the element
+				current = current->right;		
+			}
+			else
+			{
+				flag = 0;
+				break;
+			}
 		}
 	}
 }
@@ -283,23 +295,42 @@ void findBetweenKeys(BST * root, int k1, int k2)
 	STACK * st = (STACK*)malloc(sizeof(STACK));
 	st->top=NULL;
 	st->count=0;
-	BST * tempRoot = root;
-	stackPush(st, tempRoot);
 
-	while(!isEmpty(st))
+	BST * current = root;
+	
+	int flag = 1;
+
+	while(flag)
 	{
-		tempRoot = stackGetTop(st);	stackPop(st);
-
-		while(tempRoot->left!=NULL)
-			stackPush(st, tempRoot=tempRoot->left);
-
-		if(tempRoot->val >= k1 && tempRoot->val <= k2)
+		if(current!=NULL)
 		{
-			printf("%d ", tempRoot->val);
+			stackPush(st, current);
+			current=current->left;
 		}
-
-		if(tempRoot->right!=NULL)
-			stackPush(st, tempRoot->right);
+		else
+		{
+			if(!isEmpty(st))
+			{
+				current = stackGetTop(st);	stackPop(st);
+				if(current->val > k2)
+				{
+					return;
+				}
+				else
+				{
+					if(current->val >= k1)
+					{
+						printf("%d ", current->val); // this is visiting the element
+					}
+					current = current->right;
+				}
+			}
+			else
+			{
+				flag = 0;
+				break;
+			}
+		}
 	}
 
 	printf("\n");
